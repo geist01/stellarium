@@ -10,7 +10,7 @@ pkgdesc="Software which renders realistic skies in real time with OpenGL"
 arch=(x86_64)
 url="https://${pkgname}.org"
 license=(GPL2)
-depends=('libpng' 'libglvnd' 'freetype2' 'openssl' 'gpsd' 'calcmysky' 'libindi'
+depends=('libpng' 'libglvnd' 'freetype2' 'openssl' 'gpsd' 'calcmysky'
   'qt6-charts' 'qt6-serialport' 'qt6-multimedia' 'qt6-positioning' 'qt6-webengine') # 'qxlsx'
 makedepends=('cmake' 'ninja' 'mesa' 'qt6-tools')
 source=(https://github.com/Stellarium/${pkgname}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz{,.asc})
@@ -38,6 +38,7 @@ build() {
     -DENABLE_SHOWMYSKY=ON \
     -DENABLE_TESTING=0 \
     -DENABLE_XLSX=0 \
+    -DUSE_PLUGIN_TELESCOPECONTROL=0 \
     -Wno-dev
   cmake --build build --target all
 }
